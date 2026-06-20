@@ -4,6 +4,7 @@ import random
 import requests
 from fastapi import FastAPI, Response, status, Request
 from typing import List
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 
 # ================================
 #  CONFIGURAÇÃO DA APLICAÇÃO
@@ -17,6 +18,10 @@ APP_ERRORS = int(os.getenv("APP_ERRORS", "0"))  # Porcentagem de erro (0 a 100)
 APP_LATENCY = int(os.getenv("APP_LATENCY", "0"))  # Tempo máximo de atraso (em ms)
 
 app = FastAPI()
+
+@app.get("/metrics")
+def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 @app.get("/")
 def read_root():
