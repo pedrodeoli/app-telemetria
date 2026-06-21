@@ -1,8 +1,8 @@
 services:
   app-a:
     build: 
-      context: ./src
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./src/Dockerfile
     ports:
       - "8000:8000"
     environment:
@@ -15,8 +15,8 @@ services:
 
   app-b:
     build: 
-      context: ./src
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./src/Dockerfile
     ports:
       - "8001:8000"
     environment:
@@ -29,8 +29,8 @@ services:
 
   app-c:
     build: 
-      context: ./src
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./src/Dockerfile
     ports:
       - "8002:8000"
     environment:
