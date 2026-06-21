@@ -5,7 +5,7 @@ import requests
 from fastapi import FastAPI, Response, status, Request
 from typing import List
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
-from otel.metrics import request_counter
+from otel.metrics import request_counter, active_requests_gauge
 
 # ================================
 #  CONFIGURAÇÃO DA APLICAÇÃO
@@ -27,6 +27,7 @@ def metrics():
 @app.get("/")
 def read_root():
     request_counter.add(1, {"app": APP_NAME, "endpoint": "/"})
+    active_requests_gauge.set(1, {"app": APP_NAME, "endpoint": "/"})
     return {"message": f"Esse é o serviço {APP_NAME}"}
 
 @app.post("/process")
