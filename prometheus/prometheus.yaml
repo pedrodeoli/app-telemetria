@@ -1,0 +1,14 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'otel-app-a'
+    static_configs:
+      - targets: ['app-a:8000']
+  - job_name: 'otel-app-b'
+    static_configs:
+      - targets: ['app-b:8000']
+  - job_name: 'otel-app-c'
+    static_configs:
+      - targets: ['app-c:8000']
